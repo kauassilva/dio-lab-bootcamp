@@ -29,7 +29,7 @@ public class Bootcamp {
         conteudos.add(conteudo);
     }
 
-    private int calcularHoraTotal() {
+    public int calcularHoraTotal() {
         return conteudos.stream()
                 .mapToInt(conteudo -> conteudo.getCargaHoraria() != null ? conteudo.getCargaHoraria() : 0)
                 .sum();

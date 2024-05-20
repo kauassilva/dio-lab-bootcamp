@@ -1,4 +1,6 @@
 import com.learn.bootcamp.*;
+import com.learn.bootcamp.certificado.Certificado;
+import com.learn.bootcamp.enums.TipoCertificado;
 
 import java.time.LocalDate;
 
@@ -29,7 +31,11 @@ public class Main {
         dev1.setNome("Camila");
         dev1.inscreverBootcamp(bootcamp);
 
+        Certificado certificado1 = new Certificado(dev1.getNome(), LocalDate.now(), bootcamp.getNome(), bootcamp.calcularHoraTotal(), 3);
+        System.out.println(TipoCertificado.valueOf(2));
+
         System.out.println(bootcamp);
+        System.out.println(certificado1);
 
     }
 

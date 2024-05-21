@@ -1,5 +1,7 @@
 package com.learn.bootcamp;
 
+import com.learn.bootcamp.conteudos.Conteudo;
+
 import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Optional;

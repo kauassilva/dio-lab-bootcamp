@@ -1,4 +1,4 @@
-package com.learn.bootcamp;
+package com.learn.bootcamp.conteudos;
 
 import com.learn.bootcamp.enums.Nivel;
 

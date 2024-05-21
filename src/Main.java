@@ -1,5 +1,8 @@
 import com.learn.bootcamp.*;
 import com.learn.bootcamp.certificado.Certificado;
+import com.learn.bootcamp.conteudos.Conteudo;
+import com.learn.bootcamp.conteudos.Curso;
+import com.learn.bootcamp.conteudos.Mentoria;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

@@ -1,4 +1,4 @@
-package com.learn.bootcamp;
+package com.learn.bootcamp.conteudos;
 
 public abstract class Conteudo {
 

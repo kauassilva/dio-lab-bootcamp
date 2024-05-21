@@ -1,5 +1,6 @@
 package com.learn.bootcamp;
 
+import com.learn.bootcamp.conteudos.Conteudo;
 import com.learn.bootcamp.enums.Nivel;
 
 import java.time.LocalDate;
@@ -43,7 +44,7 @@ public class Bootcamp {
     }
 
     private Nivel calcularNivelBase() {
-        Optional<Conteudo> conteudo = conteudos.stream().min((conteudo1, conteudo2) -> Integer.compare(conteudo1.nivel, conteudo2.nivel));
+        Optional<Conteudo> conteudo = conteudos.stream().min(Comparator.comparingInt(Conteudo::getNivel));
 
         if (conteudo.isEmpty())
             throw new NoSuchElementException("Nenhum conteúdo encontrado com o nível especificado!");
@@ -52,7 +53,7 @@ public class Bootcamp {
     }
 
     private Nivel calcularNivelMaximo() {
-        Optional<Conteudo> conteudo = conteudos.stream().max((conteudo1, conteudo2) -> Integer.compare(conteudo1.nivel, conteudo2.nivel));
+        Optional<Conteudo> conteudo = conteudos.stream().max(Comparator.comparingInt(Conteudo::getNivel));
 
         if (conteudo.isEmpty())
             throw new NoSuchElementException("Nenhum conteúdo encontrado com o nível especificado!");

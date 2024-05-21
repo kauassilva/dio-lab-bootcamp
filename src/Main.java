@@ -7,9 +7,9 @@ import java.time.LocalDateTime;
 public class Main {
 
     public static void main(String[] args) {
-        Conteudo curso1 = new Curso("Curso Java", "melhor curso para sair do zero em Java.", 21, 1);
+        Conteudo curso1 = new Curso("Java Básico", "Melhor curso para sair do zero em Java.", 21, 1);
 
-        Conteudo curso2 = new Curso("Curso JS", "pior curso de todos, mas temos que fazer por causa dos mimimi.", 1, 1);
+        Conteudo curso2 = new Curso("API Stream do Java", "Aprenda a como utilizar a API Stream para melhorar seu código.", 2, 2);
 
         Conteudo mentoria1 = new Mentoria("Mentoria de Java", "Se prepare para entender alguns padrões para o seu código Java.", 2, 1, LocalDateTime.now().plusDays(2));
 

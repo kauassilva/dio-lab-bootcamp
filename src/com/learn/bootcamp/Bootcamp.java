@@ -1,11 +1,10 @@
 package com.learn.bootcamp;
 
+import com.learn.bootcamp.enums.Nivel;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 public class Bootcamp {
 
@@ -41,6 +40,31 @@ public class Bootcamp {
 
     private int calcularTotalConteudo() {
         return conteudos.size();
+    }
+
+    private Nivel calcularNivelBase() {
+        Optional<Conteudo> conteudo = conteudos.stream().min((conteudo1, conteudo2) -> Integer.compare(conteudo1.nivel, conteudo2.nivel));
+
+        if (conteudo.isEmpty())
+            throw new NoSuchElementException("Nenhum conteúdo encontrado com o nível especificado!");
+
+        return Nivel.valueOf(conteudo.get().getNivel());
+    }
+
+    private Nivel calcularNivelMaximo() {
+        Optional<Conteudo> conteudo = conteudos.stream().max((conteudo1, conteudo2) -> Integer.compare(conteudo1.nivel, conteudo2.nivel));
+
+        if (conteudo.isEmpty())
+            throw new NoSuchElementException("Nenhum conteúdo encontrado com o nível especificado!");
+
+        return Nivel.valueOf(conteudo.get().getNivel());
+    }
+
+    private String exibirNivel() {
+        Nivel nivelBase = calcularNivelBase();
+        Nivel nivelMaximo = calcularNivelMaximo();
+
+        return nivelBase == nivelMaximo ? nivelBase.toString() : nivelBase + " - " + nivelMaximo;
     }
 
     public LocalDate getDataInicial() {
@@ -103,6 +127,7 @@ public class Bootcamp {
         String dataFinalFormatada = dataFinal.format(formatacao);
 
         return "{ Nome: " + nome +
+                " | Range de nível: " + exibirNivel() +
                 " | Carga Horária: " + calcularHoraTotal() +
                 " | Devs Inscritos: " + calcularTotalDevsIncritos() +
                 " | Descrição: " + descricao +

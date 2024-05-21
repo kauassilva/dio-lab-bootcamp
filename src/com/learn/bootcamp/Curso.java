@@ -16,7 +16,7 @@ public class Curso extends Conteudo {
     @Override
     public String toString() {
         return "{ Curso: " + titulo +
-                " | Nivel: " + Nivel.valueOf(nivel) +
+                " | Nível: " + Nivel.valueOf(nivel) +
                 " | Carga Horária: " + cargaHoraria + " hora(s)" +
                 " | Descrição: " + descricao +
                 " }";

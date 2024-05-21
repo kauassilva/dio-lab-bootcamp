@@ -65,6 +65,10 @@ public class Certificado {
         return credencial;
     }
 
+    public Integer getTipoCertificado() {
+        return tipoCertificado;
+    }
+
     @Override
     public String toString() {
         DateTimeFormatter formatacao = DateTimeFormatter.ofPattern("dd/MM/yyyy");

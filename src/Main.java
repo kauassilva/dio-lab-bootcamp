@@ -1,26 +1,17 @@
 import com.learn.bootcamp.*;
 import com.learn.bootcamp.certificado.Certificado;
-import com.learn.bootcamp.enums.TipoCertificado;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Main {
 
     public static void main(String[] args) {
-        Curso curso1 = new Curso();
-        curso1.setTitulo("Curso Java");
-        curso1.setDescricao("melhor curso para sair do zero em Java.");
-        curso1.setCargaHoraria(21);
+        Conteudo curso1 = new Curso("Curso Java", "melhor curso para sair do zero em Java.", 21, 1);
 
-        Curso curso2 = new Curso();
-        curso2.setTitulo("Curso JS");
-        curso2.setDescricao("pior curso de todos, mas temos que fazer por causa dos mimimi.");
-        curso2.setCargaHoraria(1);
+        Conteudo curso2 = new Curso("Curso JS", "pior curso de todos, mas temos que fazer por causa dos mimimi.", 1, 1);
 
-        Mentoria mentoria1 = new Mentoria();
-        mentoria1.setTitulo("Mentoria de Java");
-        mentoria1.setDescricao("Se prepare para entender alguns padrões para o seu código Java.");
-        mentoria1.setData(LocalDate.now());
+        Conteudo mentoria1 = new Mentoria("Mentoria de Java", "Se prepare para entender alguns padrões para o seu código Java.", 2, 1, LocalDateTime.now().plusDays(2));
 
         Bootcamp bootcamp = new Bootcamp("Bootcamp Java Developer", "Aprenda a ser um main Java Developer!");
         bootcamp.adicionarConteudo(curso1);
@@ -32,10 +23,12 @@ public class Main {
         dev1.inscreverBootcamp(bootcamp);
 
         Certificado certificado1 = new Certificado(dev1.getNome(), LocalDate.now(), bootcamp.getNome(), bootcamp.calcularHoraTotal(), 3);
-        System.out.println(TipoCertificado.valueOf(2));
 
-        System.out.println(bootcamp);
-        System.out.println(certificado1);
+        System.out.println("\n" + bootcamp);
+        System.out.println("\n" + certificado1);
+        System.out.println("\n" + curso1);
+        System.out.println("\n" + curso2);
+        System.out.println("\n" + mentoria1);
 
     }
 

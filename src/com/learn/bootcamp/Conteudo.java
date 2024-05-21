@@ -2,36 +2,39 @@ package com.learn.bootcamp;
 
 public abstract class Conteudo {
 
-    protected static final double XP_PADRAO = 10d;
+    protected static final int XP_PADRAO = 20;
 
-    private String titulo;
-    private String descricao;
-    private Integer cargaHoraria;
+    protected String titulo;
+    protected String descricao;
+    protected Integer cargaHoraria;
+    protected Integer nivel;
 
-    public abstract double calcularXp();
+    public Conteudo(String titulo, String descricao, Integer cargaHoraria, Integer nivel) {
+        this.titulo = titulo;
+        this.descricao = descricao;
+        this.cargaHoraria = cargaHoraria;
+        this.nivel = nivel;
+    }
+
+    public abstract int calcularXp();
 
     public String getTitulo() {
         return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
     }
 
     public String getDescricao() {
         return descricao;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
     public Integer getCargaHoraria() {
         return cargaHoraria;
     }
 
-    public void setCargaHoraria(Integer cargaHoraria) {
-        this.cargaHoraria = cargaHoraria;
+    public Integer getNivel() {
+        return nivel;
     }
+
+    @Override
+    public abstract String toString();
 
 }

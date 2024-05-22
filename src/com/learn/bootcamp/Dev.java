@@ -1,5 +1,6 @@
 package com.learn.bootcamp;
 
+import com.learn.bootcamp.certificado.Certificado;
 import com.learn.bootcamp.conteudos.Conteudo;
 
 import java.util.LinkedHashSet;
@@ -12,27 +13,70 @@ public class Dev {
     private String nome;
     private Set<Conteudo> conteudosInscritos = new LinkedHashSet<>();
     private Set<Conteudo> conteudosConcluidos = new LinkedHashSet<>();
+    private Set<Bootcamp> bootcampsInscritos = new LinkedHashSet<>();
+    private Set<Bootcamp> bootcampsConcluidos = new LinkedHashSet<>();
+    private Set<Certificado> certificados = new LinkedHashSet<>();
 
     public void inscreverBootcamp(Bootcamp bootcamp) {
-        conteudosInscritos.addAll(bootcamp.getConteudos());
+        bootcampsInscritos.add(bootcamp);
         bootcamp.getDevsInscritos().add(this);
+        conteudosInscritos.addAll(bootcamp.getConteudos());
     }
 
-    public void progredir() {
-        Optional<Conteudo> conteudo = conteudosInscritos.stream().findFirst();
+    public void progredir(Conteudo conteudo) {
+        verificarConteudosConcluidos(conteudo);
+        verificarConteudosInscritos(conteudo);
+        conteudosConcluidos.add(conteudo);
+        conteudosInscritos.remove(conteudo);
 
-        if (conteudo.isPresent()) {
-            conteudosConcluidos.add(conteudo.get());
-            conteudosInscritos.remove(conteudo.get());
-        } else {
-            System.err.println("Você não está matriculado em nenhum conteúdo!");
-        }
+        progredirBootcamp();
     }
 
     public double calcularTotalXp() {
         return conteudosConcluidos.stream()
                 .mapToDouble(Conteudo::calcularXp)
                 .sum();
+    }
+
+    public void desistirBootcamp(Bootcamp bootcamp) {
+        verificarBootcampInscritos(bootcamp);
+        bootcampsInscritos.remove(bootcamp);
+        conteudosInscritos.removeAll(bootcamp.getConteudos());
+    }
+
+    private void verificarBootcampInscritos(Bootcamp bootcamp) {
+        boolean existe = bootcampsInscritos.stream()
+                .anyMatch(bootcampInscrito -> bootcampInscrito.equals(bootcamp));
+
+        if (!existe) {
+            throw new IllegalStateException("Você não está inscrito no bootcamp fornecido!");
+        }
+    }
+
+    private void progredirBootcamp() {
+        Optional<Bootcamp> bootcamp = bootcampsInscritos.stream()
+                .filter(bootcampInscrito -> bootcampInscrito.getConteudos().equals(conteudosConcluidos))
+                .findAny();
+
+        if (bootcamp.isPresent()) {
+            bootcampsInscritos.remove(bootcamp.get());
+            bootcampsConcluidos.add(bootcamp.get());
+        }
+    }
+
+    private void verificarConteudosInscritos(Conteudo conteudo) {
+        boolean estaInscrito = conteudosInscritos.stream().anyMatch(conteudoInscrito -> conteudoInscrito == conteudo);
+
+        if (!estaInscrito)
+            throw new IllegalStateException("Você não está matriculado neste curso!");
+    }
+
+    private void verificarConteudosConcluidos(Conteudo conteudo) {
+        boolean foiConcluido = conteudosConcluidos.stream()
+                .anyMatch(conteudoConcluido -> conteudoConcluido == conteudo);
+
+        if (foiConcluido)
+            throw new IllegalStateException("O conteúdo especificado já foi concluido!");
     }
 
     public String getNome() {
@@ -47,16 +91,16 @@ public class Dev {
         return conteudosInscritos;
     }
 
-    public void setConteudosInscritos(Set<Conteudo> conteudosInscritos) {
-        this.conteudosInscritos = conteudosInscritos;
-    }
-
     public Set<Conteudo> getConteudosConcluidos() {
         return conteudosConcluidos;
     }
 
-    public void setConteudosConcluidos(Set<Conteudo> conteudosConcluidos) {
-        this.conteudosConcluidos = conteudosConcluidos;
+    public Set<Bootcamp> getBootcampsInscritos() {
+        return bootcampsInscritos;
+    }
+
+    public Set<Bootcamp> getBootcampsConcluidos() {
+        return bootcampsConcluidos;
     }
 
     @Override

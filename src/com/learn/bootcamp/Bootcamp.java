@@ -1,5 +1,6 @@
 package com.learn.bootcamp;
 
+import com.learn.bootcamp.certificado.Certificado;
 import com.learn.bootcamp.conteudos.Conteudo;
 import com.learn.bootcamp.enums.Nivel;
 
@@ -113,12 +114,12 @@ public class Bootcamp {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Bootcamp bootcamp = (Bootcamp) o;
-        return Objects.equals(getDataInicial(), bootcamp.getDataInicial()) && Objects.equals(getDataFinal(), bootcamp.getDataFinal()) && Objects.equals(getNome(), bootcamp.getNome()) && Objects.equals(getDescricao(), bootcamp.getDescricao()) && Objects.equals(getDevsInscritos(), bootcamp.getDevsInscritos()) && Objects.equals(getConteudos(), bootcamp.getConteudos());
+        return Objects.equals(getNome(), bootcamp.getNome()) && Objects.equals(getConteudos(), bootcamp.getConteudos());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getDataInicial(), getDataFinal(), getNome(), getDescricao(), getDevsInscritos(), getConteudos());
+        return Objects.hash(getNome(), getConteudos());
     }
 
     @Override

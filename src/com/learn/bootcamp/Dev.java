@@ -28,7 +28,7 @@ public class Dev {
         verificarConteudosInscritos(conteudo);
         conteudosConcluidos.add(conteudo);
         conteudosInscritos.remove(conteudo);
-
+        certificados.add(conteudo.gerarCertificado(this));
         progredirBootcamp();
     }
 
@@ -61,6 +61,7 @@ public class Dev {
         if (bootcamp.isPresent()) {
             bootcampsInscritos.remove(bootcamp.get());
             bootcampsConcluidos.add(bootcamp.get());
+            certificados.add(bootcamp.get().gerarCertificado(this));
         }
     }
 
@@ -101,6 +102,10 @@ public class Dev {
 
     public Set<Bootcamp> getBootcampsConcluidos() {
         return bootcampsConcluidos;
+    }
+
+    public Set<Certificado> getCertificados() {
+        return certificados;
     }
 
     @Override

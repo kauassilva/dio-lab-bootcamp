@@ -1,7 +1,10 @@
 package com.learn.bootcamp.conteudos;
 
+import com.learn.bootcamp.Dev;
+import com.learn.bootcamp.certificado.Certificado;
 import com.learn.bootcamp.enums.Nivel;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -19,6 +22,11 @@ public class Mentoria extends Conteudo {
     @Override
     public int calcularXp() {
         return XP_PADRAO * cargaHoraria + XP_BONUS;
+    }
+
+    @Override
+    public Certificado gerarCertificado(Dev dev) {
+        return new Certificado(dev.getNome(), LocalDate.now(), titulo, cargaHoraria, 2);
     }
 
     public LocalDateTime getDataHora() {

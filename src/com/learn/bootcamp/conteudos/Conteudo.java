@@ -1,5 +1,8 @@
 package com.learn.bootcamp.conteudos;
 
+import com.learn.bootcamp.Dev;
+import com.learn.bootcamp.certificado.Certificado;
+
 public abstract class Conteudo {
 
     protected static final int XP_PADRAO = 20;
@@ -17,6 +20,8 @@ public abstract class Conteudo {
     }
 
     public abstract int calcularXp();
+
+    public abstract Certificado gerarCertificado(Dev dev);
 
     public String getTitulo() {
         return titulo;

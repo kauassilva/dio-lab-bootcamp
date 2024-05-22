@@ -36,6 +36,10 @@ public class Bootcamp {
                 .sum();
     }
 
+    public Certificado gerarCertificado(Dev dev) {
+        return new Certificado(dev.getNome(), LocalDate.now(), nome, calcularHoraTotal(), 3);
+    }
+
     private int calcularTotalDevsIncritos() {
         return devsInscritos.size();
     }

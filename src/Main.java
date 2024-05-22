@@ -1,10 +1,9 @@
-import com.learn.bootcamp.*;
-import com.learn.bootcamp.certificado.Certificado;
+import com.learn.bootcamp.Bootcamp;
+import com.learn.bootcamp.Dev;
 import com.learn.bootcamp.conteudos.Conteudo;
 import com.learn.bootcamp.conteudos.Curso;
 import com.learn.bootcamp.conteudos.Mentoria;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Main {
@@ -29,22 +28,22 @@ public class Main {
         dev1.inscreverBootcamp(bootcamp1);
         dev1.inscreverBootcamp(bootcamp2);
         dev1.progredir(curso2);
+        dev1.progredir(curso1);
         dev1.progredir(mentoria1);
 
+        System.out.println("\nConteúdos inscritos: " + dev1.getConteudosInscritos());
+        System.out.println("\nConteúdos concluídos: " + dev1.getConteudosConcluidos());
+        System.out.println("\nBootcamps inscritos: " + dev1.getBootcampsInscritos());
+        System.out.println("\nBootcamps concluídos: " + dev1.getBootcampsConcluidos());
 
-        Certificado certificado1 = new Certificado(dev1.getNome(), LocalDate.now(), bootcamp1.getNome(), bootcamp1.calcularHoraTotal(), 3);
+        dev1.desistirBootcamp(bootcamp2);
 
         System.out.println("\nConteúdos inscritos: " + dev1.getConteudosInscritos());
         System.out.println("\nConteúdos concluídos: " + dev1.getConteudosConcluidos());
         System.out.println("\nBootcamps inscritos: " + dev1.getBootcampsInscritos());
         System.out.println("\nBootcamps concluídos: " + dev1.getBootcampsConcluidos());
 
-        dev1.desistirBootcamp(bootcamp1);
-
-        System.out.println("\nConteúdos inscritos: " + dev1.getConteudosInscritos());
-        System.out.println("\nConteúdos concluídos: " + dev1.getConteudosConcluidos());
-        System.out.println("\nBootcamps inscritos: " + dev1.getBootcampsInscritos());
-        System.out.println("\nBootcamps concluídos: " + dev1.getBootcampsConcluidos());
+        System.out.println("Certificados: " + dev1.getCertificados());
 
     }
 
